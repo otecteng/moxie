@@ -1,9 +1,9 @@
 var request = require('request');
 
 describe("tes api", function() {
-  it("hello", function(done){
+  it("hello",function(){
     console.log('this is a hello test');
-  }
+  });
   // it("user api_create", function(done){
   //   request
   //     .post('http://localhost:3000/users/')
