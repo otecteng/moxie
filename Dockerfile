@@ -3,4 +3,4 @@ COPY package.json /src/package.json
 RUN cd /src; npm install
 COPY . /src
 EXPOSE  8080
-CMD ["node", "/src/www/bin"]
+CMD ["node", "/src/bin/www"]
