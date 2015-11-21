@@ -8,7 +8,8 @@ var bodyParser = require('body-parser');
 // Database
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk(process.env.MONGODB_CONNECTION);
+console.log('connecting to database...' + process.env.MONGODB_CONNECTION);
+var db = monk(process.env.MONGODB_CONNECTION||'localhost:27017/nodetest2');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -17,7 +18,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('port', 80);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
