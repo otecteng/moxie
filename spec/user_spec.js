@@ -23,5 +23,14 @@ describe("tes api", function() {
   //       done();
   //     });
   // });
+  // it("user login", function(done){
+  //   request
+  //     .post('http://localhost/users/words')
+  //     .form({mobile: '123456',star:1,word:"我是你",date:new Date()})
+  //     .on('data', function(data) {
+  //       console.log('---'+data);
+  //       done();
+  //     });
+  // });
 
 });

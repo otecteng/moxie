@@ -4,17 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var cors = require('cors');
 // Database
 var mongo = require('mongodb');
 var monk = require('monk');
-console.log('connecting to database...' + process.env.MONGODB_CONNECTION);
+console.log('connecting to database...' + process.env.MONGODB_CONNECTION||'localhost:27017/nodetest2');
 var db = monk(process.env.MONGODB_CONNECTION||'localhost:27017/nodetest2');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
-
+app.use(cors());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

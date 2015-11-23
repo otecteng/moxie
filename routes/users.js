@@ -29,4 +29,27 @@ router.post('/login', function(req, res, next) {
   });
 });
 
+router.get('/words', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('userlist');
+  collection.findOne({ mobile:'123456'}).on('success', function (doc) {
+    res.send(doc.words);
+  });
+});
+
+router.post('/words', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('userlist');
+  collection.findOne({ mobile:req.body.mobile}).on('success', function (doc) {
+    if(!doc.words){
+      doc.words =[req.body];
+    }else{
+      doc.words.push(req.body);
+    }
+    collection.updateById(doc._id.toString(), doc, function(){
+      res.send({ msg: 'ok' });
+    });
+  });  
+});
+
 module.exports = router;
