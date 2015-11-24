@@ -1,5 +1,5 @@
 FROM node:4.2.2
-RUN npm config set registry http://registry.cnpmjs.org
+RUN npm config set registry https://registry.npm.taobao.org
 COPY package.json /src/package.json
 RUN cd /src; npm install
 COPY . /src
