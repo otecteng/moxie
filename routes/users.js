@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var uuid = require('uuid');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var db = req.db;
@@ -33,14 +33,29 @@ router.get('/words', function(req, res, next) {
   var db = req.db;
   var collection = db.get('userlist');
   collection.findOne({ mobile:'123456'}).on('success', function (doc) {
+    doc.words
     res.send(doc.words);
+  }).on('error',function(e){
+    res.send(e);
   });
 });
 
-router.post('/words', function(req, res, next) {
+router.get('/words/:id', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('userlist');
+  collection.findOne({ mobile:'123456'}).on('success', function (doc) {
+    doc.words
+    res.send(doc.words);
+  }).on('error',function(e){
+    res.send(e);
+  });  
+}
+
+router.post('/words/delete', function(req, res, next) {
   var db = req.db;
   var collection = db.get('userlist');
   collection.findOne({ mobile:req.body.mobile}).on('success', function (doc) {
+    req.body.id = uuid.v4();
     if(!doc.words){
       doc.words =[req.body];
     }else{
@@ -49,7 +64,23 @@ router.post('/words', function(req, res, next) {
     collection.updateById(doc._id.toString(), doc, function(){
       res.send({ msg: 'ok' });
     });
-  });  
+  });
+}
+
+router.post('/words', function(req, res, next) {
+  var db = req.db;
+  var collection = db.get('userlist');
+  collection.findOne({ mobile:req.body.mobile}).on('success', function (doc) {
+    req.body.id = uuid.v4();
+    if(!doc.words){
+      doc.words =[req.body];
+    }else{
+      doc.words.push(req.body);
+    }
+    collection.updateById(doc._id.toString(), doc, function(){
+      res.send({ msg: 'ok' });
+    });
+  });
 });
 
 module.exports = router;
