@@ -16,9 +16,11 @@ router.post('/', function(req, res, next) {
   collection.findOne({ mobile:req.body.mobile}).on('success', function (doc) {
     if(!doc){
       collection.insert(req.body);
+    }else{
+      doc = req.body;
     }
+    res.send(doc);
   });
-  res.send({ msg: 'ok' });
 });
 
 router.post('/login', function(req, res, next) {
