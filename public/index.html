@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<style>
+    body {
+        background-color: #EA4B88;
+        font-family: monospace;
+    }
+    .header{
+        margin-top: 180px;
+        text-align: center;
+        color: #D1D1D2;
+        font-family: monospace;
+        height: 80px;
+    }
+    .menu{
+        text-align: center;
+        background-color: #F193B8;
+        width: 100%;
+        height: 80px;
+    }
+    .menu_item {
+        background-color: #FBDDE9;
+        float: left;
+        width: 49%;
+        margin-left: 1px;
+        height: 100%;
+        font-size: larger;
+    }
+    .o_clear{
+        clear: both;
+    }
+    .menu_bar{
+        background: #FBDDE9;
+        height: 28px;
+        margin: 0px;
+        font-size: 18px;
+    }
+    nav {
+        margin: 50px;
+    }
+
+    .mainmenu {
+        overflow: auto;
+        list-style-type: none;
+        margin-left: -2.5%;
+    }
+
+
+    .mainmenu .mainmenu_item {
+        display: inline-block;
+        padding: 10px;
+        margin: 0 0 5% 5%;
+        background: #FBDDE9;
+        font-size: 20px;
+        vertical-align: top;
+        text-align: center;
+        box-shadow: 0 0 5px #ddd;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+
+    .mainmenu .mainmenu_item img {
+        max-width: 100%;
+        height: auto;
+        margin: 0 0 10px;
+    }
+
+    .mainmenu .mainmenu_item {
+        width: 40%; /* this value + 2.5 should = 50% */
+    }
+    @media (max-width: 480px) {
+        ul.grid-nav li {
+            display: block;
+            margin: 0 0 5px;
+        }
+        ul.grid-nav li a {
+            display: block;
+        }
+        ul.rig {
+            margin-left: 0;
+        }
+        ul.rig li {
+            width: 100% !important; /* over-ride all li styles */
+            margin: 0 0 20px;
+        }
+    }
+    /*li:last-child {*/
+        /*border-right: none;*/
+    /*}*/
+
+    /*li a {*/
+        /*text-decoration: none;*/
+        /*color: #ccc;*/
+        /*font: 20px monospace;*/
+        /*text-transform: uppercase;*/
+    /*}*/
+
+    /*li a:hover {*/
+        /*color: #666;*/
+    /*}*/
+
+    /*li.active a {*/
+        /*font-weight: bold;*/
+        /*color: #333;*/
+    /*}*/
+</style>
+    <script src="js/user.js"></script>
+    <script>
+        var server="goxplanet-moxie.daoapp.io";
+//        var server="localhost";
+        var userService = new UserService();
+        var grades = [{k:1,v:"优",image:"assets/css/images/cake.png"},
+    {k:2,v:"良",image:"assets/css/images/good.png"},
+    {k:3,v:"及格",image:"assets/css/images/not_bad.png"},
+    {k:4,v:"不及格",image:"assets/css/images/bad.png"}];
+
+    </script>
+</head>
+<body>
+<div id="main"></div>
+<script type="text/javascript" src="cordova.js"></script>
+<script src="nav_menu.tag" type="riot/tag"></script>
+<script src="menu.tag" type="riot/tag"></script>
+<script src="new.tag" type="riot/tag"></script>
+<script src="list.tag" type="riot/tag"></script>
+<script src="word.tag" type="riot/tag"></script>
+<script src="speak.tag" type="riot/tag"></script>
+<script src="register.tag" type="riot/tag"></script>
+<script src="lib/riot+compiler.min.js"></script>
+<script src="lib/zepto.min.js"></script>
+<script src="lib/moment.min.js"></script>
+
+<script>
+    var loader = 'menu';
+    if(!userService.checkUser()){
+        loader = "register";
+    }
+    riot.mount('#main',loader);
+</script>
+
+</body>
+</html>
