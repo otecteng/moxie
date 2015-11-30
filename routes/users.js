@@ -16,7 +16,6 @@ router.post('/', function(req, res, next) {
   collection.findOne({ mobile:req.body.mobile}).on('success', function (doc) {
     if(!doc){
       collection.insert(req.body);
-    }else{
       doc = req.body;
     }
     res.send(doc);
@@ -31,26 +30,18 @@ router.post('/login', function(req, res, next) {
   });
 });
 
-router.get('/words', function(req, res, next) {
-  var db = req.db;
-  var collection = db.get('userlist');
-  collection.findOne({ mobile:'123456'}).on('success', function (doc) {
-    doc.words
-    res.send(doc.words);
-  }).on('error',function(e){
-    res.send(e);
-  });
-});
-
 router.get('/words/:id', function(req, res, next) {
   var db = req.db;
   var collection = db.get('userlist');
-  collection.findOne({ mobile:'123456'}).on('success', function (doc) {
-    doc.words
-    res.send(doc.words);
+  collection.findOne({ mobile:req.params.id}).on('success', function (doc) {
+    var ret = doc.words;
+    if(!ret){
+      ret = [];
+    }
+    res.send(ret);
   }).on('error',function(e){
     res.send(e);
-  });  
+  });
 });
 
 router.post('/words/delete', function(req, res, next) {
