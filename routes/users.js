@@ -38,6 +38,7 @@ router.get('/words/:id', function(req, res, next) {
     if(!ret){
       ret = [];
     }
+    ret.reverse();
     res.send(ret);
   }).on('error',function(e){
     res.send(e);

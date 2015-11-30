@@ -18,12 +18,12 @@
             margin-bottom: 20px;
         }
         .input_new_words{
-            height: 50px;
-            width: 100%;
             border: 0px;
             padding: 0px;
             font-size: 40px;
             margin-bottom: 20px;
+            width: 100%;
+            height: 150px;
         }
         .btn{
             font-size: 30px;
@@ -51,7 +51,7 @@
                 <label for="{k}"><img src="{image}"></label>
             </li>
         </ul>
-        <input class="input_new_words" placeholder="在这里输入今天的错字" name="words">
+        <textarea class="input_new_words" placeholder="在这里输入今天的错字" name="words"></textarea>
 <div>
     <button class="btn">添加</button>
     </div>

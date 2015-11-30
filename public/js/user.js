@@ -31,21 +31,25 @@ var UserService = function() {
     this.register = function(mobile,callback){
         this.post("http://"+server+"/users/",{mobile:mobile},callback);
         this.mobile = mobile;
+        localStorage.mobile = mobile;
     }
 
     this.getWords = function(callback){
-        this.get("http://"+server+"/users/words/",callback);
+        this.get("http://"+server+"/users/words/"+this.mobile,callback);
     }
 
     this.newWord = function(data,callback){
+        data.mobile = "123456";
         this.post("http://"+server+"/users/words/",data,callback);
     }
 
     this.deleteWords = function(id,callback){
-        this.post("http://"+server+"/users/words/delete",{mobile:"123456",id:id},callback);
+        var data = {mobile:"123456",id:id};
+        this.post("http://"+server+"/users/words/delete",data,callback);
     }
 
     this.checkUser = function(){
+        this.mobile = localStorage.mobile;
         return this.mobile;
     }
 
