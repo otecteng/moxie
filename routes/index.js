@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/hello/:name', function(req, res, next) {
-   res.json({'message':'hello' + req.params.name});
+   res.json({'message':'你好：' + req.params.name});
 });
 
 module.exports = router;
