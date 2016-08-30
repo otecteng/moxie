@@ -1,5 +1,5 @@
 <menu>
-  <div class='header'><h1>记账本</h1></div>
+  <div class='header'><h1>记账本本</h1></div>
     <nav>
         <ul class="mainmenu">
             <li class="mainmenu_item" onclick={go_list}><img src="assets/css/images/ic_action_book.png" /><div>默写</div></li>
